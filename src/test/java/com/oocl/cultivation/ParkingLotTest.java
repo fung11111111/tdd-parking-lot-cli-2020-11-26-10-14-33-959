@@ -65,6 +65,21 @@ public class ParkingLotTest {
         //then
         assertEquals(car, actual);
 
+    }
+
+    @Test
+    void should_return_nocar_when_fetchCar_given_invalidticket_parkinglot_has_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        Ticket ticket1 = new Ticket();
+
+        //when
+        Car actual = parkingLot.fetchCar(ticket1);
+
+        //then
+        assertNotEquals(car, actual);
 
     }
 
