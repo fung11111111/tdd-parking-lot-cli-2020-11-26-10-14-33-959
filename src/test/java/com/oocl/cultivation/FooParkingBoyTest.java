@@ -17,7 +17,7 @@ public class FooParkingBoyTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
             {
                 add(parkingLot1);
-                add(parkingLot2);
+               // add(parkingLot2);
             }
         };
         FooParkingBoy fooParkingBoy = new FooParkingBoy(parkingLots);
