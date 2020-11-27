@@ -8,12 +8,17 @@ public class FooParkingBoy {
         this.parkingLots = parkingLots;
     }
 
-    public void park(Car car) throws NotEnoughPosition {
-        for (ParkingLot parkingLot: parkingLots){
-            Ticket ticket = parkingLot.park(car);
-            if(ticket != null){
-                break;
+    public Ticket park(Car car) throws NotEnoughPosition {
+        try {
+            for (ParkingLot parkingLot: parkingLots){
+                Ticket ticket = parkingLot.park(car);
+                if(ticket != null){
+                    return ticket;
+                }
             }
+        }catch (NotEnoughPosition ignoringExc){
         }
+
+        return null;
     }
 }
