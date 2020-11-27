@@ -72,11 +72,12 @@ public class ParkingLotTest {
 
 
     @Test
-    void should_return_car_when_fetchCar_given_validticket_parkinglot_has_car() {
+    void should_return_car_when_fetchCar_given_parkinglot_has_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
+        Ticket ticket = parkingBoy.park(car);
 
         //when
         Car actual = parkingLot.fetchCar(ticket);
@@ -87,7 +88,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nocar_when_fetchCar_given_invalidticket_parkinglot_has_car() {
+    void should_return_nocar_when_fetchCar_given_ticket_parkinglot_has_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();

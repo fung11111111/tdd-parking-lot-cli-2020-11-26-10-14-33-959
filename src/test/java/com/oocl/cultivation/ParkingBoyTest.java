@@ -10,7 +10,7 @@ import static org.mockito.Mockito.times;
 class ParkingBoyTest {
 
     @Test
-    void should_verfiy_park_when_park_given_parkingBoy_parkingLot_with_availbale_capacity() {
+    void should_call_park_when_parkingboy_park_given_parkingBoy_car_parkingLot_with_availbale_capacity() {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -24,6 +24,20 @@ class ParkingBoyTest {
     }
 
 
+    @Test
+    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() {
+        //given
+        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        //when
+        parkingBoy.fetchCar(ticket);
+
+        //then
+        verify(parkingLot, times(1)).park(car);
+    }
 
 
 
