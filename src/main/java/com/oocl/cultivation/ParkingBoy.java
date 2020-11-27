@@ -1,12 +1,11 @@
 package com.oocl.cultivation;
 
 public class ParkingBoy {
-    private ParkingLot parkinglot;
-    private Car car;
-    public ParkingBoy(ParkingLot parkinglot) {
-        this.parkinglot = parkinglot;
+    private ParkingLot parkingLot;
+    public ParkingBoy(ParkingLot parkingLot){
+        this.parkingLot = parkingLot;
     }
     public Ticket park(Car car){
-        return parkinglot.park(car);
+        return this.parkingLot.park(car);
     }
 }
