@@ -15,9 +15,9 @@ public class ParkingLot{
         return carTicketMap.size() < capacity;
     }
 
-    public Ticket park(Car car) {
+    public Ticket park(Car car) throws NotEnoughPosition{
         if(!isavailbale()){
-            return null;
+            throw new NotEnoughPosition();
         }
         Ticket ticket = new Ticket();
         carTicketMap.put(ticket,car);
