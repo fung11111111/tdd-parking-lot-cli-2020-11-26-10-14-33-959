@@ -53,6 +53,25 @@ public class ParkingLotTest {
     }
 
     @Test
+    void should_return_oneTicket_when_parkingCar_given_multicars_parkingBoy_parkingLot_with_1_availbale_capacity() {
+        //given
+        ParkingLot parkinglot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkinglot);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        //when
+        Ticket ticket1 = parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
+
+        //then
+        assertNotNull(ticket1);
+        assertNull(ticket2);
+
+    }
+
+
+    @Test
     void should_return_car_when_fetchCar_given_validticket_parkinglot_has_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
