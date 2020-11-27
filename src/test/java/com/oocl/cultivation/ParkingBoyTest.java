@@ -23,20 +23,20 @@ class ParkingBoyTest {
     }
 
 
-//    @Test
-//    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() {
-//        //given
-//        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
-//        Car car = new Car();
-//        Ticket ticket = parkingLot.park(car);
-//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-//
-//        //when
-//        parkingBoy.fetchCar(ticket);
-//
-//        //then
-//        verify(parkingLot, times(1)).park(car);
-//    }
+    @Test
+    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition{
+        //given
+        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+
+        //when
+        parkingBoy.fetchCar(ticket);
+
+        //then
+        verify(parkingLot, times(1)).park(car);
+    }
 
 
 
