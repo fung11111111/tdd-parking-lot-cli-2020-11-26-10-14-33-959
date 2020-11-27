@@ -17,9 +17,12 @@ public class ParkingLot{
         cars = new ArrayList<>();
         carTicketMap = new HashMap<>();
     }
+    public Boolean isavailbale(){
+        return carTicketMap.size() < capacity;
+    }
 
     public Ticket park(Car car) {
-        if(capacity - carTicketMap.size() <= 0){
+        if(!isavailbale()){
             return null;
         }
         Ticket ticket = new Ticket();
