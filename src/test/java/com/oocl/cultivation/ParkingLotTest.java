@@ -52,7 +52,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_oneTicket_and_throw_notenoughposition_when_parkingCar_given_multicars_parkingLot_with_1_availbale_capacity() throws NotEnoughPosition{
+    void should_return_oneTicket_and_throw_notenoughposition_exception_when_parkingCar_given_multicars_parkingLot_with_1_availbale_capacity() throws NotEnoughPosition{
         //given
         ParkingLot parkinglot = new ParkingLot(1);
         Car car1 = new Car();
