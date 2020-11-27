@@ -20,6 +20,7 @@ public class ParkingLot{
             throw new NotEnoughPosition();
         }
         Ticket ticket = new Ticket();
+        ticket.setParkingLot(this);
         carTicketMap.put(ticket,car);
         return ticket;
     }
