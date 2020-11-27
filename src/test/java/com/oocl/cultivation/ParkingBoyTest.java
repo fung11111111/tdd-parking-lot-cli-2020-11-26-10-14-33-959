@@ -8,6 +8,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 class ParkingBoyTest {
+
     @Test
     void should_return_ticket_when_parkingCar_given_parkingBoy_parkingLot_with_availbale_capacity() {
         //given 
@@ -19,7 +20,7 @@ class ParkingBoyTest {
         parkingBoy.park(car);
 
         //then
-        verify(parkinglot, times(1)).park();
+        verify(parkinglot, times(1)).park(car);
         
     }
 
