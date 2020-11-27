@@ -1,20 +1,14 @@
 package com.oocl.cultivation;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot{
-
     private final Integer capacity;
-    private ArrayList<Car> cars;
-
     private Map<Ticket, Car> carTicketMap;
 
     public ParkingLot(Integer capacity) {
         this.capacity = capacity;
-        cars = new ArrayList<>();
         carTicketMap = new HashMap<>();
     }
     public Boolean isavailbale(){
