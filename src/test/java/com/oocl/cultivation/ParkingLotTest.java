@@ -52,4 +52,20 @@ public class ParkingLotTest {
         assertNotEquals(ticket1,ticket2);
     }
 
+    @Test
+    void should_return_car_when_fectCar_given_validticket_parkinglot_has_car() {
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+
+        //when
+        Car actual = parkingLot.fetchCar(ticket);
+
+        //then
+        assertEquals(car, actual);
+
+
+    }
+
 }

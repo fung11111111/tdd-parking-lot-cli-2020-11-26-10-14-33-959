@@ -20,4 +20,8 @@ public class ParkingLot{
         cars.add(car);
         return new Ticket();
     }
+
+    public Car fetchCar(Ticket ticket) {
+        return new Car();
+    }
 }
