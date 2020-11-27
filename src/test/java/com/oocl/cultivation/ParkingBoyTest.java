@@ -27,7 +27,7 @@ class ParkingBoyTest {
     @Test
     void should_return_ticket_when_parkingCar_given_parkingBoy_parkingLot_with_availbale_capacity() {
         //given
-        ParkingLot parkinglot = new ParkingLot();
+        ParkingLot parkinglot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkinglot);
         Car car = new Car();
 
@@ -42,7 +42,7 @@ class ParkingBoyTest {
     @Test
     void should_return_noticket_when_parkingCar_given_parkingBoy_parkingLot_with_no_availbale_capacity() {
         //given
-        ParkingLot parkinglot = new ParkingLot();
+        ParkingLot parkinglot = new ParkingLot(0);
         ParkingBoy parkingBoy = new ParkingBoy(parkinglot);
         Car car = new Car();
 
