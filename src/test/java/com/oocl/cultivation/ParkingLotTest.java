@@ -53,7 +53,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_car_when_fectCar_given_validticket_parkinglot_has_car() {
+    void should_return_car_when_fetchCar_given_validticket_parkinglot_has_car() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();
