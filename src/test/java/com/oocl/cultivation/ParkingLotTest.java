@@ -33,7 +33,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_multi_tickets_when_parkingCar_given_multi_cars_parkingLot_with_availbale_capacity() {
+    void should_return_multi_tickets_when_parkingCar_given_multi_cars_parkingLot_with_10_availbale_capacity() {
         //given
         ParkingLot parkinglot = new ParkingLot(10);
         Car car1 = new Car();
@@ -80,17 +80,20 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_nocar_when_fetchCar_given_ticket_parkinglot_that_parked_no_car() {
+    void should_return_nocar_when_fetchCar_given_parkinglot_car_used_ticket() {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
-        Ticket ticket = new Ticket();
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+        parkingLot.fetchCar(ticket);
 
         //when
-        Car car = parkingLot.fetchCar(ticket);
+        Car fetchedCar = parkingLot.fetchCar(ticket);
 
         //then
-        assertNull(car);
+        assertNull(fetchedCar);
 
     }
+
 
 }
