@@ -16,7 +16,9 @@ class ParkingBoyTest {
     void should_call_park_when_parkingboy_park_given_parkingBoy_car_parkingLot_with_availbale_capacity() throws NotEnoughPosition{
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
         //when
@@ -31,9 +33,11 @@ class ParkingBoyTest {
     void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition{
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
         //when
         parkingBoy.fetchCar(ticket);
@@ -53,11 +57,11 @@ class ParkingBoyTest {
                 add(parkingLot2);
             }
         };
-        FooParkingBoy fooParkingBoy = new FooParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
         //when
-        fooParkingBoy.park(car);
+        parkingBoy.park(car);
 
         //then
         verify(parkingLot1, times(1)).park(car);
@@ -75,11 +79,11 @@ class ParkingBoyTest {
                 add(parkingLot2);
             }
         };
-        FooParkingBoy fooParkingBoy = new FooParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
         //when
-        fooParkingBoy.park(car);
+        parkingBoy.park(car);
 
         //then
         verify(parkingLot1, times(1)).park(car);
@@ -97,13 +101,13 @@ class ParkingBoyTest {
                 add(parkinglot2);
             }
         };
-        FooParkingBoy fooParkingBoy = new FooParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car1 = new Car();
         Car car2 = new Car();
 
         //when
-        Ticket ticket1 = fooParkingBoy.park(car1);
-        Ticket ticket2 = fooParkingBoy.park(car2);
+        Ticket ticket1 = parkingBoy.park(car1);
+        Ticket ticket2 = parkingBoy.park(car2);
 
         //then
         assertNotNull(ticket1);
@@ -122,12 +126,12 @@ class ParkingBoyTest {
                 add(parkinglot2);
             }
         };
-        FooParkingBoy fooParkingBoy = new FooParkingBoy(parkingLots);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
         //when
-        fooParkingBoy.park(new Car());
-        Ticket ticket = fooParkingBoy.park(car);
+        parkingBoy.park(new Car());
+        Ticket ticket = parkingBoy.park(car);
         ParkingLot actual = ticket.getParkingLot();
 
         //then
