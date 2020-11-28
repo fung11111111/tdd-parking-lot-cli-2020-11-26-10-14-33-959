@@ -134,5 +134,22 @@ public class ServiceManagerTest {
 
     }
 
+    @Test
+    void should_return_ticket_when_servicemanager_park_given_servicemanager_car_parkinglots_with_available_capacity() {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(1));
+        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+
+        //when
+        Ticket ticket = serviceManager.park(new Car());
+
+        //then
+       assertNotNull(ticket);
+
+    }
+
+
+
 
 }

@@ -39,4 +39,8 @@ public class ServiceManager {
         }
         return null;
     }
+
+    public Ticket park(Car car) {
+        return null;
+    }
 }
