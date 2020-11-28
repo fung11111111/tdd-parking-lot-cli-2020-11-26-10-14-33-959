@@ -29,4 +29,7 @@ public class ParkingBoy {
         }
         throw new UnrecognizedParkingTicket();
     }
+    public ArrayList<ParkingLot> getParkingLots(){
+        return this.parkingLots;
+    }
 }
