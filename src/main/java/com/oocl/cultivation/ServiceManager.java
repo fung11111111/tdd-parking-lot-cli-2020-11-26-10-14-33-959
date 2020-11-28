@@ -40,7 +40,14 @@ public class ServiceManager {
         return null;
     }
 
-    public Ticket park(Car car) {
-        return null;
+    public Ticket park(Car car) throws NotEnoughPosition {
+        for(ParkingLot parkingLot: parkingLots){
+            try{
+                return parkingLot.park(car);
+            }catch (NotEnoughPosition ignoringExc){
+
+            }
+        }
+        throw new NotEnoughPosition();
     }
 }
