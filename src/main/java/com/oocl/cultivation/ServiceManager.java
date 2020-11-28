@@ -27,6 +27,9 @@ public class ServiceManager {
     }
 
     public Ticket assignParkingBoyPark(ParkingBoy parkingBoy,Car car) throws NotEnoughPosition {
+        if (isParkingBoyInList(parkingBoy)){
+            return parkingBoy.park(car);
+        }
         return null;
     }
 }
