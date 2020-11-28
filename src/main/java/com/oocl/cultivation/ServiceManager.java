@@ -33,7 +33,10 @@ public class ServiceManager {
         return null;
     }
 
-    public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) {
-        return new Car();
+    public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) throws UnrecognizedParkingTicket {
+        if (isParkingBoyInList(parkingBoy)){
+            return parkingBoy.fetchCar(ticket);
+        }
+        return null;
     }
 }

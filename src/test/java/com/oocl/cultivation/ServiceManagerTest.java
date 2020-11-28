@@ -70,7 +70,7 @@ public class ServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_ticket() throws NotEnoughPosition {
+    void should_return_car_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
