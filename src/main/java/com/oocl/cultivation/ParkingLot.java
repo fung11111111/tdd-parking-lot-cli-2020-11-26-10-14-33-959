@@ -35,4 +35,7 @@ public class ParkingLot{
 
        throw new UnrecognizedParkingTicket();
     }
+    public int getEmptyPosition(){
+        return this.capacity - carTicketMap.size();
+    }
 }
