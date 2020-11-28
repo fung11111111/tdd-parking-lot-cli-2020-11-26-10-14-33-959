@@ -69,8 +69,8 @@ public class ParkingLotTest {
         assertEquals("Not enough position.", notEnoughPositionException.getMessage());
     }
 
-        @Test
-    void should_return_car_when_fetchCar_given_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition{
+    @Test
+    void should_return_car_when_fetchCar_given_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition {
         //given
         ParkingLot parkingLot = new ParkingLot(1);
         Car car = new Car();

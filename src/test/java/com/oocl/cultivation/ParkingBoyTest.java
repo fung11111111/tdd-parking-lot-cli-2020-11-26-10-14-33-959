@@ -164,5 +164,23 @@ class ParkingBoyTest {
 
     }
 
+    @Test
+    void should_return_car_when_fetchCar_given_parkingboy_ticket_from_one_of_parkinglots() throws UnrecognizedParkingTicket, NotEnoughPosition {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Ticket ticket = parkingBoy.park(new Car());
+
+        //when
+        Car car = parkingBoy.fetchCar(ticket);
+
+        //then
+        assertNotNull(car);
+    }
+
 
 }
