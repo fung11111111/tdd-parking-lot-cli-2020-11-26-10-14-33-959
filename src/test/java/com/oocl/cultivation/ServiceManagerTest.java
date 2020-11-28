@@ -29,7 +29,23 @@ public class ServiceManagerTest {
         assertEquals(true, serviceManager.isParkingBoyInList(smartParkingBoy));
         assertEquals(true, serviceManager.isParkingBoyInList(superSmartParkingBoy));
 
+    }
 
+    @Test
+    void should_return_ticket_when_servicemanager_assignparkingboypark_given_servicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        Car car = new Car();
+        serviceManager.addParkingBoy(parkingBoy);
+
+        //when
+        Ticket ticket = serviceManager.assignParkingBoyPark(parkingBoy, car);
+
+        //then
+        assertNotNull(ticket);
 
     }
 
