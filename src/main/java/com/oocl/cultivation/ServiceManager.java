@@ -50,4 +50,8 @@ public class ServiceManager {
         }
         throw new NotEnoughPosition();
     }
+
+    public Car fetchCar(Ticket ticket) {
+        return new Car();
+    }
 }
