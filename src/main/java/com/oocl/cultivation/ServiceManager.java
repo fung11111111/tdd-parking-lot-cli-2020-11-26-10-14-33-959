@@ -32,4 +32,8 @@ public class ServiceManager {
         }
         return null;
     }
+
+    public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) {
+        return new Car();
+    }
 }
