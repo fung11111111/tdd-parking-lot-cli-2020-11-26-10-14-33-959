@@ -49,4 +49,6 @@ public class SuperSmartParkingBoyTest {
         assertEquals("Not enough position.", notEnoughPositionException.getMessage());
 
     }
+
+
 }
