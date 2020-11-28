@@ -3,7 +3,6 @@ package com.oocl.cultivation;
 import java.util.ArrayList;
 
 public class ParkingBoy {
-    private ParkingLot parkingLot;
     private ArrayList<ParkingLot> parkingLots;
 
     public ParkingBoy(ArrayList<ParkingLot> parkingLots){
@@ -21,6 +20,13 @@ public class ParkingBoy {
     }
 
     public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicket{
-        return this.parkingLot.fetchCar(ticket);
+        for(ParkingLot parkingLot: parkingLots){
+            try{
+                return parkingLot.fetchCar(ticket);
+            }catch (UnrecognizedParkingTicket ignoringExc){
+
+            }
+        }
+        throw new UnrecognizedParkingTicket();
     }
 }
