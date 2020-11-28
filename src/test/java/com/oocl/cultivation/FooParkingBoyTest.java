@@ -34,7 +34,7 @@ public class FooParkingBoyTest {
     @Test
     void should_parkingLot2_call_park_when_parkingboy_park_given_parkingBoy_multi_cars_parkingLot1_with_no_availbale_capacity() throws NotEnoughPosition{
         //given
-        ParkingLot parkingLot1 = Mockito.mock(ParkingLot.class);
+        ParkingLot parkingLot1 = spy(new ParkingLot(0));
         ParkingLot parkingLot2 = Mockito.mock(ParkingLot.class);
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
             {
@@ -75,11 +75,11 @@ public class FooParkingBoyTest {
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
-        assertEquals(parkinglot1, ticket1.getParkingLot());
+        assertEquals(parkinglot1, ticket2.getParkingLot());
 
     }
     @Test
-    void should_return_ticket_from_parkingLot2_when_fooparkingboy_parkingCar_given_multicas_parkingLot1_with_no_capacity() throws NotEnoughPosition {
+    void should_return_ticket_from_parkingLot2_when_fooparkingboy_parkingCar_given_car_parkingLot1_with_no_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkinglot1 = new ParkingLot(1);
         ParkingLot parkinglot2 = new ParkingLot(1);
@@ -90,17 +90,16 @@ public class FooParkingBoyTest {
             }
         };
         FooParkingBoy fooParkingBoy = new FooParkingBoy(parkingLots);
-        Car car1 = new Car();
-        Car car2 = new Car();
+        Car car = new Car();
 
         //when
-        Ticket ticket1 = fooParkingBoy.park(car1);
-        Ticket ticket2 = fooParkingBoy.park(car2);
+        fooParkingBoy.park(new Car());
+        Ticket ticket = fooParkingBoy.park(car);
+        ParkingLot actual = ticket.getParkingLot();
 
         //then
-        assertNotNull(ticket1);
-        assertNotNull(ticket2);
-        assertEquals(parkinglot2, ticket2.getParkingLot());
+        assertNotNull(ticket);
+        assertEquals(parkinglot2, actual);
 
     }
 
