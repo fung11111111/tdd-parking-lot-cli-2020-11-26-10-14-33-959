@@ -112,5 +112,27 @@ public class ServiceManagerTest {
 
     }
 
+    @Test
+    void should_throw_throw_unrecognizedparkingticket_exception_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_invalidticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        serviceManager.addParkingBoy(parkingBoy);
+        Car car = new Car();
+        parkingBoy.park(car);
+
+        //when
+        UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
+            Car fetchedCar = serviceManager.assignParkingBoyFetch(parkingBoy, new Ticket());
+        });
+
+
+        //then
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
+
+    }
+
 
 }
