@@ -211,5 +211,26 @@ public class ServiceManagerTest {
 
     }
 
+    @Test
+    void should_throw_parkingboynotinlist_exception_when_servicemanager_assignparkingboyfetch_given_servicemanager_incorrectparkingBoy_ticket() throws NotEnoughPosition, ParkingBoyNotInList {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        Car car = new Car();
+        serviceManager.addParkingBoy(parkingBoy);
+        Ticket ticker = parkingBoy.park(car);
+
+        //when
+        ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
+            Car fetchedCar = serviceManager.assignParkingBoyFetch(new ParkingBoy(parkingLots), ticker);
+        });
+
+        //then
+        assertEquals("Parking boy not in list.", parkingBoyNotInListException.getLocalizedMessage());
+
+    }
+
 
 }
