@@ -26,18 +26,18 @@ public class ServiceManager {
         return false;
     }
 
-    public Ticket assignParkingBoyPark(ParkingBoy parkingBoy,Car car) throws NotEnoughPosition {
+    public Ticket assignParkingBoyPark(ParkingBoy parkingBoy,Car car) throws NotEnoughPosition, ParkingBoyNotInList{
         if (isParkingBoyInList(parkingBoy)){
             return parkingBoy.park(car);
         }
-        return null;
+        throw new ParkingBoyNotInList();
     }
 
-    public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) throws UnrecognizedParkingTicket {
+    public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) throws UnrecognizedParkingTicket, ParkingBoyNotInList {
         if (isParkingBoyInList(parkingBoy)){
             return parkingBoy.fetchCar(ticket);
         }
-        return null;
+        throw new ParkingBoyNotInList();
     }
 
     public Ticket park(Car car) throws NotEnoughPosition {

@@ -32,7 +32,7 @@ public class ServiceManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_servicemanager_assignparkingboypark_given_servicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition {
+    void should_return_ticket_when_servicemanager_assignparkingboypark_given_servicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -48,6 +48,27 @@ public class ServiceManagerTest {
         assertNotNull(ticket);
 
     }
+
+    @Test
+    void should_throw_parkingboynotinlist_exception_when_servicemanager_assignparkingboypark_given_servicemanager_incorrectparkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(1));
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        Car car = new Car();
+        serviceManager.addParkingBoy(parkingBoy);
+
+        //when
+        ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
+            Ticket ticket = serviceManager.assignParkingBoyPark(new ParkingBoy(parkingLots), car);
+        });
+
+        //then
+        assertEquals("Parking boy not in list.", parkingBoyNotInListException.getLocalizedMessage());
+
+    }
+
 
     @Test
     void should_throw_notenoughposition_exception_when_servicemanager_assignparkingboypark_given_servicemanager_parkingboy_car_parkingLot_with_no_available_capacity() throws NotEnoughPosition {
@@ -70,7 +91,7 @@ public class ServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
+    void should_return_car_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket, ParkingBoyNotInList {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -187,7 +208,7 @@ public class ServiceManagerTest {
 
         //then
         assertNotNull(fetchCarcar);
-        
+
     }
 
 
