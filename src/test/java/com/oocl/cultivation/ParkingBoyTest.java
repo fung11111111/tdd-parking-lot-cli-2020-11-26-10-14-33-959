@@ -5,15 +5,14 @@ import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.spy;
 
 class ParkingBoyTest {
 
     @Test
-    void should_call_park_when_parkingboy_park_given_parkingBoy_car_parkingLot_with_availbale_capacity() throws NotEnoughPosition{
+    void should_call_park_when_parkingboy_park_given_parkingBoy_car_parkingLot_with_availbale_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
@@ -29,29 +28,29 @@ class ParkingBoyTest {
     }
 
 
+//    @Test
+//    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition{
+//        //given
+//        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
+//        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+//        parkingLots.add(parkingLot);
+//        Car car = new Car();
+//        Ticket ticket = parkingLot.park(car);
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+//
+//        //when
+//        parkingBoy.fetchCar(ticket);
+//
+//        //then
+//        verify(parkingLot, times(1)).park(car);
+//    }
+
     @Test
-    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition{
-        //given
-        ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot);
-        Car car = new Car();
-        Ticket ticket = parkingLot.park(car);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-
-        //when
-        parkingBoy.fetchCar(ticket);
-
-        //then
-        verify(parkingLot, times(1)).park(car);
-    }
-
-    @Test
-    void should_parkingLot1_call_park_when_parkingboy_park_given_parkingBoy_car_parkingLot1_with_availbale_capacity() throws NotEnoughPosition{
+    void should_parkingLot1_call_park_when_parkingboy_park_given_parkingBoy_car_parkingLot1_with_availbale_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkingLot1 = spy(new ParkingLot(1));
         ParkingLot parkingLot2 = Mockito.mock(ParkingLot.class);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
             {
                 add(parkingLot1);
                 add(parkingLot2);
@@ -69,11 +68,11 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_parkingLot2_call_park_when_parkingboy_park_given_parkingBoy_multi_cars_parkingLot1_with_no_availbale_capacity() throws NotEnoughPosition{
+    void should_parkingLot2_call_park_when_parkingboy_park_given_parkingBoy_multi_cars_parkingLot1_with_no_availbale_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkingLot1 = spy(new ParkingLot(0));
         ParkingLot parkingLot2 = Mockito.mock(ParkingLot.class);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
             {
                 add(parkingLot1);
                 add(parkingLot2);
@@ -95,7 +94,7 @@ class ParkingBoyTest {
         //given
         ParkingLot parkinglot1 = new ParkingLot(10);
         ParkingLot parkinglot2 = new ParkingLot(10);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
             {
                 add(parkinglot1);
                 add(parkinglot2);
@@ -115,12 +114,13 @@ class ParkingBoyTest {
         assertEquals(parkinglot1, ticket2.getParkingLot());
 
     }
+
     @Test
     void should_return_ticket_from_parkingLot2_when_fooparkingboy_parkingCar_given_car_parkingLot1_with_no_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkinglot1 = new ParkingLot(1);
         ParkingLot parkinglot2 = new ParkingLot(1);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
             {
                 add(parkinglot1);
                 add(parkinglot2);
@@ -140,7 +140,29 @@ class ParkingBoyTest {
 
     }
 
+    @Test
+    void should_throw_notenoughposition_exception_when_parkingboy_park_given_car_parkingLots_with_no_capacity() throws NotEnoughPosition {
+        //given
+        ParkingLot parkinglot1 = new ParkingLot(0);
+        ParkingLot parkinglot2 = new ParkingLot(0);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
+            {
+                add(parkinglot1);
+                add(parkinglot2);
+            }
+        };
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Car car = new Car();
 
+        //when
+        NotEnoughPosition notEnoughPositionException = assertThrows(NotEnoughPosition.class, () -> {
+            Ticket ticket = parkingBoy.park(car);
+        });
+
+        //then
+        assertEquals("Not enough position.", notEnoughPositionException.getMessage());
+
+    }
 
 
 }
