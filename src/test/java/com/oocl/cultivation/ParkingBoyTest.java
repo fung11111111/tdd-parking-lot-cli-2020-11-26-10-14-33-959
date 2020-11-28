@@ -182,5 +182,31 @@ class ParkingBoyTest {
         assertNotNull(car);
     }
 
+    @Test
+    void should_throw_unrecognizedparkingticket_exception_when_fetchCar_given_parkingboy_multiparkinglots_car_used_ticket() throws UnrecognizedParkingTicket, NotEnoughPosition {
+        //given
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(1);
+        ArrayList<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        parkingBoy.fetchCar(ticket);
+
+        //when
+        UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
+            Car fetchedCar = parkingBoy.fetchCar(ticket);
+        });
+
+
+        //then
+        assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
+
+    }
+
+
+
 
 }
