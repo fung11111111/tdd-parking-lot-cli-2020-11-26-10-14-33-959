@@ -90,7 +90,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_ticket_from_parkingLot1_when_fooparkingboy_parkingCar_given_multicas_two_parkingLots_with_availbale_capacity() throws NotEnoughPosition {
+    void should_return_ticket_from_parkingLot1_when_parkingboy_park_given_parkingboy_multicas_two_parkingLots_with_availbale_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkinglot1 = new ParkingLot(10);
         ParkingLot parkinglot2 = new ParkingLot(10);
@@ -116,7 +116,7 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_return_ticket_from_parkingLot2_when_fooparkingboy_parkingCar_given_car_parkingLot1_with_no_capacity() throws NotEnoughPosition {
+    void should_return_ticket_from_parkingLot2_when_parkingboy_park_given_parkingboy_car_parkingLot1_with_no_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkinglot1 = new ParkingLot(1);
         ParkingLot parkinglot2 = new ParkingLot(1);
