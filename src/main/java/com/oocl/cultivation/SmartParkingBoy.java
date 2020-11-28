@@ -15,6 +15,5 @@ public class SmartParkingBoy {
                 .max((parkinglot1, parkingLot2) ->parkinglot1.getEmptyPosition() >= parkingLot2.getEmptyPosition() ? 1:-1)
                 .orElse(null);
         return parkingLot.park(car);
-
     }
 }

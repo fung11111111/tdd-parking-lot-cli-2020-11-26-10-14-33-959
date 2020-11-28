@@ -20,7 +20,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_throw_notenoughposition_exception_when_parkingCar_given_parkingLot_with_no_availbale_capacity() throws NotEnoughPosition {
+    void should_throw_notenoughposition_exception_when_parkingCar_given_parkingLot_with_no_availabale_capacity() throws NotEnoughPosition {
         //given
         ParkingLot parkinglot = new ParkingLot(0);
         Car car = new Car();
