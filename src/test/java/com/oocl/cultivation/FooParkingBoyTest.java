@@ -81,8 +81,8 @@ public class FooParkingBoyTest {
     @Test
     void should_return_ticket_from_parkingLot2_when_fooparkingboy_parkingCar_given_multicas_parkingLot1_with_no_capacity() throws NotEnoughPosition {
         //given
-        ParkingLot parkinglot1 = new ParkingLot(0);
-        ParkingLot parkinglot2 = new ParkingLot(10);
+        ParkingLot parkinglot1 = new ParkingLot(1);
+        ParkingLot parkinglot2 = new ParkingLot(1);
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>(){
             {
                 add(parkinglot1);
@@ -100,7 +100,7 @@ public class FooParkingBoyTest {
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
-        assertEquals(parkinglot2, ticket1.getParkingLot());
+        assertEquals(parkinglot2, ticket2.getParkingLot());
 
     }
 

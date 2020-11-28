@@ -9,16 +9,14 @@ public class FooParkingBoy {
     }
 
     public Ticket park(Car car) throws NotEnoughPosition {
-        try {
-            for (ParkingLot parkingLot: parkingLots){
-                Ticket ticket = parkingLot.park(car);
-                if(ticket != null){
-                    return ticket;
-                }
-            }
-        }catch (NotEnoughPosition ignoringExc){
-        }
+       for(ParkingLot parkingLot: parkingLots){
+           try{
+               return parkingLot.park(car);
+           }catch (NotEnoughPosition ignoringExc){
 
-        return null;
+           }
+       }
+       throw new NotEnoughPosition();
+
     }
 }
