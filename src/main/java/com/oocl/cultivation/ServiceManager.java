@@ -51,7 +51,14 @@ public class ServiceManager {
         throw new NotEnoughPosition();
     }
 
-    public Car fetchCar(Ticket ticket) {
-        return new Car();
+    public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicket {
+        for(ParkingLot parkingLot: parkingLots){
+            try{
+                return parkingLot.fetchCar(ticket);
+            }catch (UnrecognizedParkingTicket ignoringExc){
+
+            }
+        }
+        throw new UnrecognizedParkingTicket();
     }
 }

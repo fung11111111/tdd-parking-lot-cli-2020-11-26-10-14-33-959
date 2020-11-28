@@ -145,7 +145,7 @@ public class ServiceManagerTest {
         Ticket ticket = serviceManager.park(new Car());
 
         //then
-       assertNotNull(ticket);
+        assertNotNull(ticket);
 
     }
 
@@ -167,12 +167,12 @@ public class ServiceManagerTest {
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
-        assertNotEquals(ticket1,ticket2);
+        assertNotEquals(ticket1, ticket2);
 
     }
 
     @Test
-    void should_return_car_when_servicemanager_fetchcar_given_servicemanager_ticket_parkinglot_that_parked_car() throws NotEnoughPosition {
+    void should_return_car_when_servicemanager_fetchcar_given_servicemanager_ticket_parkinglot_that_parked_car() throws NotEnoughPosition, UnrecognizedParkingTicket {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         ParkingLot parkingLot = new ParkingLot(1);
@@ -187,11 +187,8 @@ public class ServiceManagerTest {
 
         //then
         assertNotNull(fetchCarcar);
-
-
+        
     }
-
-
 
 
 }
