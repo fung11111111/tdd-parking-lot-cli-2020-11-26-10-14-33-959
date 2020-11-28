@@ -149,6 +149,28 @@ public class ServiceManagerTest {
 
     }
 
+    @Test
+    void should_return_ticket_when_servicemanager_park_given_servicemanager_multicars_parkinglot1_with_no_available_capacity() throws NotEnoughPosition {
+        //given
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(1));
+        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        //when
+        Ticket ticket1 = serviceManager.park(car1);
+        Ticket ticket2 = serviceManager.park(car2);
+
+
+        //then
+        assertNotNull(ticket1);
+        assertNotNull(ticket2);
+        assertNotEquals(ticket1,ticket2);
+
+    }
+
 
 
 
