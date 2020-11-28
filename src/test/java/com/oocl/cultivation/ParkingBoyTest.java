@@ -29,7 +29,7 @@ class ParkingBoyTest {
 
 
     @Test
-    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition{
+    void should_call_fetchCar_when_parkingboy_fetchcar_given_parkingBoy_ticket_parkinglot_that_parked_car() throws UnrecognizedParkingTicket, NotEnoughPosition {
         //given
         ParkingLot parkingLot = Mockito.mock(ParkingLot.class);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
@@ -94,12 +94,9 @@ class ParkingBoyTest {
         //given
         ParkingLot parkinglot1 = new ParkingLot(10);
         ParkingLot parkinglot2 = new ParkingLot(10);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
-            {
-                add(parkinglot1);
-                add(parkinglot2);
-            }
-        };
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(parkinglot1);
+        parkingLots.add(parkinglot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car1 = new Car();
         Car car2 = new Car();
@@ -141,16 +138,11 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_throw_notenoughposition_exception_when_parkingboy_park_given_car_parkingLots_with_no_capacity() throws NotEnoughPosition {
+    void should_throw_notenoughposition_exception_when_parkingboy_park_given_parkingboy_car_parkingLots_with_no_capacity() throws NotEnoughPosition {
         //given
-        ParkingLot parkinglot1 = new ParkingLot(0);
-        ParkingLot parkinglot2 = new ParkingLot(0);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
-            {
-                add(parkinglot1);
-                add(parkinglot2);
-            }
-        };
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(new ParkingLot(0));
+        parkingLots.add(new ParkingLot(0));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
@@ -167,11 +159,9 @@ class ParkingBoyTest {
     @Test
     void should_return_car_when_fetchCar_given_parkingboy_ticket_from_one_of_parkinglots() throws UnrecognizedParkingTicket, NotEnoughPosition {
         //given
-        ParkingLot parkingLot1 = new ParkingLot(1);
-        ParkingLot parkingLot2 = new ParkingLot(1);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
+        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Ticket ticket = parkingBoy.park(new Car());
 
@@ -185,14 +175,11 @@ class ParkingBoyTest {
     @Test
     void should_throw_unrecognizedparkingticket_exception_when_fetchCar_given_parkingboy_multiparkinglots_car_used_ticket() throws UnrecognizedParkingTicket, NotEnoughPosition {
         //given
-        ParkingLot parkingLot1 = new ParkingLot(1);
-        ParkingLot parkingLot2 = new ParkingLot(1);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
+        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
+        Ticket ticket = parkingBoy.park(new Car());
         parkingBoy.fetchCar(ticket);
 
         //when
@@ -207,15 +194,12 @@ class ParkingBoyTest {
     }
 
     @Test
-    void should_throw_unrecognizedparkingticket_exception_when_fetchCar_given_parkingboy_multiparkinglots_car_invalid_ticket() throws UnrecognizedParkingTicket, NotEnoughPosition {
+    void should_throw_unrecognizedparkingticket_exception_when_fetchCar_given_parkingboy_multiparkinglots_invalid_ticket() throws UnrecognizedParkingTicket, NotEnoughPosition {
         //given
-        ParkingLot parkingLot1 = new ParkingLot(1);
-        ParkingLot parkingLot2 = new ParkingLot(1);
         ArrayList<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
+        parkingLots.add(new ParkingLot(1));
+        parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        Car car = new Car();
         Ticket invalidTicket = new Ticket();
 
         //when
@@ -228,8 +212,6 @@ class ParkingBoyTest {
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
 
     }
-
-
 
 
 }
