@@ -25,9 +25,9 @@ public class ServiceManagerTest {
 
 
         //then
-        assertEquals(parkingBoy, serviceManager.getParkingBoy(parkingBoy));
-        assertEquals(smartParkingBoy, serviceManager.getParkingBoy(smartParkingBoy));
-        assertEquals(superSmartParkingBoy, serviceManager.getParkingBoy(superSmartParkingBoy));
+        assertEquals(true, serviceManager.isParkingBoyInList(parkingBoy));
+        assertEquals(true, serviceManager.isParkingBoyInList(smartParkingBoy));
+        assertEquals(true, serviceManager.isParkingBoyInList(superSmartParkingBoy));
 
 
 

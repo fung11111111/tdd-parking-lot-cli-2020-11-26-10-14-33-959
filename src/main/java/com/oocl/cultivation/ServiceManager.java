@@ -18,7 +18,10 @@ public class ServiceManager {
     }
 
 
-    public ParkingBoy getParkingBoy(ParkingBoy parkingBoy) {
-        return null;
+    public Boolean isParkingBoyInList(ParkingBoy parkingBoy) {
+        if(managementList.contains(parkingBoy)){
+            return true;
+        }
+        return false;
     }
 }
