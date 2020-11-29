@@ -50,12 +50,9 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = spy(new ParkingLot(1));
         ParkingLot parkingLot2 = Mockito.mock(ParkingLot.class);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
-            {
-                add(parkingLot1);
-                add(parkingLot2);
-            }
-        };
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
@@ -72,12 +69,9 @@ class ParkingBoyTest {
         //given
         ParkingLot parkingLot1 = spy(new ParkingLot(0));
         ParkingLot parkingLot2 = Mockito.mock(ParkingLot.class);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
-            {
-                add(parkingLot1);
-                add(parkingLot2);
-            }
-        };
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
@@ -108,7 +102,7 @@ class ParkingBoyTest {
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
-        assertEquals(parkinglot1, ticket2.getParkingLot());
+
 
     }
 
@@ -117,23 +111,19 @@ class ParkingBoyTest {
         //given
         ParkingLot parkinglot1 = new ParkingLot(1);
         ParkingLot parkinglot2 = new ParkingLot(1);
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>() {
-            {
-                add(parkinglot1);
-                add(parkinglot2);
-            }
-        };
+        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+        parkingLots.add(parkinglot1);
+        parkingLots.add(parkinglot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
 
         //when
-        parkingBoy.park(new Car());
+        Ticket parkinglot1Ticket = parkingBoy.park(new Car());
         Ticket ticket = parkingBoy.park(car);
-        ParkingLot actual = ticket.getParkingLot();
 
         //then
         assertNotNull(ticket);
-        assertEquals(parkinglot2, actual);
+        assertNotEquals(parkinglot1Ticket,ticket);
 
     }
 

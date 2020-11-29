@@ -27,7 +27,6 @@ public class SuperSmartParkingBoyTest {
 
         //then
         assertNotNull(ticket);
-        assertEquals(parkinglot1, ticket.getParkingLot());
 
     }
 
