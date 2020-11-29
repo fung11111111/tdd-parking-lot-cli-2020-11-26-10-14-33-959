@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotServiceManagerTest {
     @Test
-    void should_add_parkingboy_when_servicemanager_addParkingBoy_given_servicemanager_parkingBoy_parkinglots() {
+    void should_add_parkingboy_when_parkinglotservicemanager_addParkingBoy_given_parkinglotservicemanager_parkingBoy_parkinglots() {
         //given
 
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
@@ -39,7 +39,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_servicemanager_assignparkingboypark_given_servicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
+    void should_return_ticket_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -57,7 +57,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_throw_parkingboynotinlist_exception_when_servicemanager_assignparkingboypark_given_servicemanager_incorrectparkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
+    void should_throw_parkingboynotinlist_exception_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_incorrectparkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -78,7 +78,7 @@ public class ParkingLotServiceManagerTest {
 
 
     @Test
-    void should_throw_notenoughposition_exception_when_servicemanager_assignparkingboypark_given_servicemanager_parkingboy_car_parkingLot_with_no_available_capacity() throws NotEnoughPosition {
+    void should_throw_notenoughposition_exception_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_parkingboy_car_parkingLot_with_no_available_capacity() throws NotEnoughPosition {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(0));
@@ -98,7 +98,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket, ParkingBoyNotInList {
+    void should_return_car_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket, ParkingBoyNotInList {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -118,7 +118,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_throw_throw_unrecognizedparkingticket_exception_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_usedticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
+    void should_throw_throw_unrecognizedparkingticket_exception_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_parkingBoy_usedticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -141,7 +141,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_throw_throw_unrecognizedparkingticket_exception_when_servicemanager_assignparkingboyfetch_given_servicemanager_parkingBoy_invalidticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
+    void should_throw_throw_unrecognizedparkingticket_exception_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_parkingBoy_invalidticket() throws NotEnoughPosition, UnrecognizedParkingTicket {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -163,7 +163,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_servicemanager_park_given_servicemanager_car_parkinglots_with_available_capacity() throws NotEnoughPosition {
+    void should_return_ticket_when_parkinglotservicemanager_park_given_parkinglotservicemanager_car_parkinglots_with_available_capacity() throws NotEnoughPosition {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -178,7 +178,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_servicemanager_park_given_servicemanager_multicars_parkinglot1_with_no_available_capacity() throws NotEnoughPosition {
+    void should_return_ticket_when_parkinglotservicemanager_park_given_parkinglotservicemanager_multicars_parkinglot1_with_no_available_capacity() throws NotEnoughPosition {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -200,7 +200,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_servicemanager_fetchcar_given_servicemanager_ticket_parkinglot_that_parked_car() throws NotEnoughPosition, UnrecognizedParkingTicket {
+    void should_return_car_when_parkinglotservicemanager_fetchcar_given_parkinglotservicemanager_ticket_parkinglot_that_parked_car() throws NotEnoughPosition, UnrecognizedParkingTicket {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         ParkingLot parkingLot = new ParkingLot(1);
@@ -219,7 +219,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_throw_parkingboynotinlist_exception_when_servicemanager_assignparkingboyfetch_given_servicemanager_incorrectparkingBoy_ticket() throws NotEnoughPosition, ParkingBoyNotInList {
+    void should_throw_parkingboynotinlist_exception_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_incorrectparkingBoy_ticket() throws NotEnoughPosition, ParkingBoyNotInList {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
