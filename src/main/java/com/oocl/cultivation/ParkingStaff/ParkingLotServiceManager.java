@@ -22,12 +22,9 @@ public class ParkingLotServiceManager extends ParkingBoy {
     public void addParkingBoy(ParkingBoy parkingBoy) {
         this.managementList.add(parkingBoy);
     }
-    
+
     public Boolean isParkingBoyInList(ParkingBoy parkingBoy) {
-        if (managementList.contains(parkingBoy)) {
-            return true;
-        }
-        return false;
+       return managementList.contains(parkingBoy);
     }
 
     public Ticket assignParkingBoyPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPosition, ParkingBoyNotInList {
