@@ -1,4 +1,10 @@
-package com.oocl.cultivation;
+package com.oocl.cultivation.ParkingStaff;
+
+import com.oocl.cultivation.Car;
+import com.oocl.cultivation.Exception.NotEnoughPosition;
+import com.oocl.cultivation.Exception.UnrecognizedParkingTicket;
+import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.Ticket;
 
 import java.util.ArrayList;
 
@@ -8,7 +14,7 @@ public class ParkingBoy {
     public ParkingBoy(ArrayList<ParkingLot> parkingLots){
         this.parkingLots = parkingLots;
     }
-    public Ticket park(Car car) throws NotEnoughPosition{
+    public Ticket park(Car car) throws NotEnoughPosition {
         for(ParkingLot parkingLot: parkingLots){
             try{
                 return parkingLot.park(car);
@@ -19,7 +25,7 @@ public class ParkingBoy {
         throw new NotEnoughPosition();
     }
 
-    public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicket{
+    public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicket {
         for(ParkingLot parkingLot: parkingLots){
             try{
                 return parkingLot.fetchCar(ticket);

@@ -1,8 +1,16 @@
-package com.oocl.cultivation;
+package com.oocl.cultivation.ParkingStaff;
+
+import com.oocl.cultivation.Car;
+import com.oocl.cultivation.Exception.NotEnoughPosition;
+import com.oocl.cultivation.Exception.ParkingBoyNotInList;
+import com.oocl.cultivation.Exception.UnrecognizedParkingTicket;
+import com.oocl.cultivation.ParkingLot;
+import com.oocl.cultivation.ParkingStaff.ParkingBoy;
+import com.oocl.cultivation.Ticket;
 
 import java.util.ArrayList;
 
-public class ParkingLotServiceManager extends ParkingBoy{
+public class ParkingLotServiceManager extends ParkingBoy {
     ArrayList<ParkingBoy> managementList;
 
     public ParkingLotServiceManager(ArrayList<ParkingBoy> managementList, ArrayList<ParkingLot> parkingLots) {
@@ -26,7 +34,7 @@ public class ParkingLotServiceManager extends ParkingBoy{
         return false;
     }
 
-    public Ticket assignParkingBoyPark(ParkingBoy parkingBoy,Car car) throws NotEnoughPosition, ParkingBoyNotInList{
+    public Ticket assignParkingBoyPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPosition, ParkingBoyNotInList {
         if (isParkingBoyInList(parkingBoy)){
             return parkingBoy.park(car);
         }
