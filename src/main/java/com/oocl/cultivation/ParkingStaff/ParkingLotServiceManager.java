@@ -22,11 +22,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
     public void addParkingBoy(ParkingBoy parkingBoy) {
         this.managementList.add(parkingBoy);
     }
-
-    public Ticket parkWithParkingBoy(ParkingBoy parkingBoy) {
-        return null;
-    }
-
+    
     public Boolean isParkingBoyInList(ParkingBoy parkingBoy) {
         if (managementList.contains(parkingBoy)) {
             return true;
