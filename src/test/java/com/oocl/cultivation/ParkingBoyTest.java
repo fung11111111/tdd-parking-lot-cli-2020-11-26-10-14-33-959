@@ -126,7 +126,7 @@ class ParkingBoyTest {
 
         //then
         assertNotNull(ticket);
-        assertNotEquals(parkinglot1Ticket,ticket);
+        assertNotEquals(parkinglot1Ticket, ticket);
 
     }
 
