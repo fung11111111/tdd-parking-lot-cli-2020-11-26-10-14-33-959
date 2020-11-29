@@ -2,14 +2,14 @@ package com.oocl.cultivation;
 
 import java.util.ArrayList;
 
-public class ServiceManager {
+public class ParkingLotServiceManager extends ParkingBoy{
     ArrayList<ParkingBoy> managementList;
-    ArrayList<ParkingLot> parkingLots;
 
-    public ServiceManager(ArrayList<ParkingBoy> managementList, ArrayList<ParkingLot> parkingLots) {
+    public ParkingLotServiceManager(ArrayList<ParkingBoy> managementList, ArrayList<ParkingLot> parkingLots) {
+        super(parkingLots);
         this.managementList = managementList;
-        this.parkingLots = parkingLots;
     }
+
 
     public void addParkingBoy(ParkingBoy parkingBoy) {
         this.managementList.add(parkingBoy);
@@ -40,25 +40,4 @@ public class ServiceManager {
         throw new ParkingBoyNotInList();
     }
 
-    public Ticket park(Car car) throws NotEnoughPosition {
-        for(ParkingLot parkingLot: parkingLots){
-            try{
-                return parkingLot.park(car);
-            }catch (NotEnoughPosition ignoringExc){
-
-            }
-        }
-        throw new NotEnoughPosition();
-    }
-
-    public Car fetchCar(Ticket ticket) throws UnrecognizedParkingTicket {
-        for(ParkingLot parkingLot: parkingLots){
-            try{
-                return parkingLot.fetchCar(ticket);
-            }catch (UnrecognizedParkingTicket ignoringExc){
-
-            }
-        }
-        throw new UnrecognizedParkingTicket();
-    }
 }

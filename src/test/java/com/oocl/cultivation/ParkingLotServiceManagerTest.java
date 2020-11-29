@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ServiceManagerTest {
+public class ParkingLotServiceManagerTest {
     @Test
     void should_add_parkingboy_when_servicemanager_addParkingBoy_given_servicemanager_parkingBoy_parkinglots() {
         //given
@@ -16,18 +16,18 @@ public class ServiceManagerTest {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
         SuperSmartParkingBoy superSmartParkingBoy = new SuperSmartParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
 
         //when
-        serviceManager.addParkingBoy(parkingBoy);
-        serviceManager.addParkingBoy(smartParkingBoy);
-        serviceManager.addParkingBoy(superSmartParkingBoy);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.addParkingBoy(smartParkingBoy);
+        parkingLotServiceManager.addParkingBoy(superSmartParkingBoy);
 
 
         //then
-        assertEquals(true, serviceManager.isParkingBoyInList(parkingBoy));
-        assertEquals(true, serviceManager.isParkingBoyInList(smartParkingBoy));
-        assertEquals(true, serviceManager.isParkingBoyInList(superSmartParkingBoy));
+        assertEquals(true, parkingLotServiceManager.isParkingBoyInList(parkingBoy));
+        assertEquals(true, parkingLotServiceManager.isParkingBoyInList(smartParkingBoy));
+        assertEquals(true, parkingLotServiceManager.isParkingBoyInList(superSmartParkingBoy));
 
     }
 
@@ -37,12 +37,12 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
         Car car = new Car();
-        serviceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
 
         //when
-        Ticket ticket = serviceManager.assignParkingBoyPark(parkingBoy, car);
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(parkingBoy, car);
 
         //then
         assertNotNull(ticket);
@@ -55,13 +55,13 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
         Car car = new Car();
-        serviceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
 
         //when
         ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
-            Ticket ticket = serviceManager.assignParkingBoyPark(new ParkingBoy(parkingLots), car);
+            Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(new ParkingBoy(parkingLots), car);
         });
 
         //then
@@ -76,13 +76,13 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(0));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
         Car car = new Car();
-        serviceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
 
         //when
         NotEnoughPosition notEnoughPositionException = assertThrows(NotEnoughPosition.class, () -> {
-            Ticket ticket = serviceManager.assignParkingBoyPark(parkingBoy, car);
+            Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(parkingBoy, car);
         });
 
         //then
@@ -96,13 +96,13 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
-        serviceManager.addParkingBoy(parkingBoy);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
 
         //when
-        Car fetchedCar = serviceManager.assignParkingBoyFetch(parkingBoy, ticket);
+        Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, ticket);
 
         //then
         assertNotNull(fetchedCar);
@@ -116,15 +116,15 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
-        serviceManager.addParkingBoy(parkingBoy);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
         parkingBoy.fetchCar(ticket);
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            Car fetchedCar = serviceManager.assignParkingBoyFetch(parkingBoy, ticket);
+            Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, ticket);
         });
 
 
@@ -139,14 +139,14 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
-        serviceManager.addParkingBoy(parkingBoy);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
         Car car = new Car();
         parkingBoy.park(car);
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            Car fetchedCar = serviceManager.assignParkingBoyFetch(parkingBoy, new Ticket());
+            Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, new Ticket());
         });
 
 
@@ -160,10 +160,10 @@ public class ServiceManagerTest {
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
 
         //when
-        Ticket ticket = serviceManager.park(new Car());
+        Ticket ticket = parkingLotServiceManager.park(new Car());
 
         //then
         assertNotNull(ticket);
@@ -176,13 +176,13 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         parkingLots.add(new ParkingLot(1));
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
         Car car1 = new Car();
         Car car2 = new Car();
 
         //when
-        Ticket ticket1 = serviceManager.park(car1);
-        Ticket ticket2 = serviceManager.park(car2);
+        Ticket ticket1 = parkingLotServiceManager.park(car1);
+        Ticket ticket2 = parkingLotServiceManager.park(car2);
 
 
         //then
@@ -198,12 +198,12 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLots.add(parkingLot);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
         Car car = new Car();
         Ticket ticket = parkingLot.park(car);
 
         //when
-        Car fetchCarcar = serviceManager.fetchCar(ticket);
+        Car fetchCarcar = parkingLotServiceManager.fetchCar(ticket);
 
 
         //then
@@ -217,14 +217,14 @@ public class ServiceManagerTest {
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ServiceManager serviceManager = new ServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
+        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
         Car car = new Car();
-        serviceManager.addParkingBoy(parkingBoy);
+        parkingLotServiceManager.addParkingBoy(parkingBoy);
         Ticket ticker = parkingBoy.park(car);
 
         //when
         ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
-            Car fetchedCar = serviceManager.assignParkingBoyFetch(new ParkingBoy(parkingLots), ticker);
+            Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(new ParkingBoy(parkingLots), ticker);
         });
 
         //then
