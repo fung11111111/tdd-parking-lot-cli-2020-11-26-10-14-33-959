@@ -26,8 +26,6 @@ public class SmartParkingBoyTest {
 
         //then
         assertNotNull(ticket);
-
-
     }
 
     @Test
@@ -41,11 +39,10 @@ public class SmartParkingBoyTest {
 
         //when
         NotEnoughPosition notEnoughPositionException = assertThrows(NotEnoughPosition.class, () -> {
-            Ticket ticket = smartParkingBoy.park(car);
+            smartParkingBoy.park(car);
         });
 
         //then
         assertEquals("Not enough position.", notEnoughPositionException.getMessage());
-
     }
 }

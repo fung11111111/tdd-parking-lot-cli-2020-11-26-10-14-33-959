@@ -18,7 +18,6 @@ public class ParkingLotTest {
 
         //then
         assertNotNull(ticket);
-
     }
 
     @Test
@@ -63,7 +62,7 @@ public class ParkingLotTest {
         //when
         Ticket ticket1 = parkinglot.park(car1);
         NotEnoughPosition notEnoughPositionException = assertThrows(NotEnoughPosition.class, () -> {
-            Ticket ticket2 = parkinglot.park(car2);
+            parkinglot.park(car2);
         });
 
         //then
@@ -95,13 +94,11 @@ public class ParkingLotTest {
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            Car fetchedCar = parkingLot.fetchCar(ticket);
+            parkingLot.fetchCar(ticket);
         });
-
 
         //then
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
-
     }
 
     @Test
@@ -119,7 +116,6 @@ public class ParkingLotTest {
 
         //then
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
-
     }
 
 

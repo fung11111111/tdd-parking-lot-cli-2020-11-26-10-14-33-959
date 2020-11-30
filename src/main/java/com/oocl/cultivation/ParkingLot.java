@@ -14,12 +14,12 @@ public class ParkingLot{
         this.capacity = capacity;
         carTicketMap = new HashMap<>();
     }
-    public Boolean isavailbale(){
+    public Boolean isAvailabale(){
         return carTicketMap.size() < capacity;
     }
 
     public Ticket park(Car car) throws NotEnoughPosition {
-        if(!isavailbale()){
+        if(!isAvailabale()){
             throw new NotEnoughPosition();
         }
         Ticket ticket = new Ticket();
@@ -34,7 +34,6 @@ public class ParkingLot{
             carTicketMap.remove(ticket);
             return car;
         }
-
        throw new UnrecognizedParkingTicket();
     }
     public int getEmptyPosition(){

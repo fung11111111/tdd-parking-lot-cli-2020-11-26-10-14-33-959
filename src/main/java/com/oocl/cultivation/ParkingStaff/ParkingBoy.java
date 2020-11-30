@@ -20,7 +20,8 @@ public class ParkingBoy {
             try {
                 return parkingLot.park(car);
             } catch (NotEnoughPosition ignoringExc) {
-
+                //pring sth as log service
+                System.out.println("park error: " + ignoringExc.getLocalizedMessage());
             }
         }
         throw new NotEnoughPosition();
@@ -31,12 +32,14 @@ public class ParkingBoy {
             try {
                 return parkingLot.fetchCar(ticket);
             } catch (UnrecognizedParkingTicket ignoringExc) {
-
+                //pring sth as log service
+                System.out.println("fetchCar error: " + ignoringExc.getLocalizedMessage());
             }
         }
         throw new UnrecognizedParkingTicket();
     }
 
+    // can be removed
     public ArrayList<ParkingLot> getParkingLots() {
         return this.parkingLots;
     }

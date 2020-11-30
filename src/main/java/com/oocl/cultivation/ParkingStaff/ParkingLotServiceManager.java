@@ -25,6 +25,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
         return managementList.contains(parkingBoy);
     }
 
+    // not need passing parkingboy
     public Ticket assignParkingBoyPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPosition, ParkingBoyNotInList {
         if (isParkingBoyInList(parkingBoy)) {
             return parkingBoy.park(car);
@@ -32,6 +33,7 @@ public class ParkingLotServiceManager extends ParkingBoy {
         throw new ParkingBoyNotInList();
     }
 
+    // not need passing parkingboy
     public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) throws UnrecognizedParkingTicket, ParkingBoyNotInList {
         if (isParkingBoyInList(parkingBoy)) {
             return parkingBoy.fetchCar(ticket);

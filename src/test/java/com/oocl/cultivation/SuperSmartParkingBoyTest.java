@@ -29,7 +29,6 @@ public class SuperSmartParkingBoyTest {
 
         //then
         assertNotNull(ticket);
-
     }
 
     @Test
@@ -48,7 +47,6 @@ public class SuperSmartParkingBoyTest {
 
         //then
         assertEquals("Not enough position.", notEnoughPositionException.getMessage());
-
     }
 
 

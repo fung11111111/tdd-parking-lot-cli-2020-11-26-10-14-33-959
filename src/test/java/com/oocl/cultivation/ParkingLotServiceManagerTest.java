@@ -30,12 +30,10 @@ public class ParkingLotServiceManagerTest {
         parkingLotServiceManager.addParkingBoy(smartParkingBoy);
         parkingLotServiceManager.addParkingBoy(superSmartParkingBoy);
 
-
         //then
         assertEquals(true, parkingLotServiceManager.isParkingBoyInList(parkingBoy));
         assertEquals(true, parkingLotServiceManager.isParkingBoyInList(smartParkingBoy));
         assertEquals(true, parkingLotServiceManager.isParkingBoyInList(superSmartParkingBoy));
-
     }
 
     @Test
@@ -53,7 +51,6 @@ public class ParkingLotServiceManagerTest {
 
         //then
         assertNotNull(ticket);
-
     }
 
     @Test
@@ -68,12 +65,11 @@ public class ParkingLotServiceManagerTest {
 
         //when
         ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
-            Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(new ParkingBoy(parkingLots), car);
+            parkingLotServiceManager.assignParkingBoyPark(new ParkingBoy(parkingLots), car);
         });
 
         //then
         assertEquals("Parking boy not in list.", parkingBoyNotInListException.getLocalizedMessage());
-
     }
 
 
@@ -89,12 +85,11 @@ public class ParkingLotServiceManagerTest {
 
         //when
         NotEnoughPosition notEnoughPositionException = assertThrows(NotEnoughPosition.class, () -> {
-            Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(parkingBoy, car);
+            parkingLotServiceManager.assignParkingBoyPark(parkingBoy, car);
         });
 
         //then
         assertEquals("Not enough position.", notEnoughPositionException.getMessage());
-
     }
 
     @Test
@@ -114,7 +109,6 @@ public class ParkingLotServiceManagerTest {
         //then
         assertNotNull(fetchedCar);
         assertEquals(car, fetchedCar);
-
     }
 
     @Test
@@ -131,13 +125,11 @@ public class ParkingLotServiceManagerTest {
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, ticket);
+            parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, ticket);
         });
-
 
         //then
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
-
     }
 
     @Test
@@ -153,13 +145,11 @@ public class ParkingLotServiceManagerTest {
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, new Ticket());
+            parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, new Ticket());
         });
-
 
         //then
         assertEquals("Unrecognized parking ticket.", unrecognizedParkingTicketException.getLocalizedMessage());
-
     }
 
     @Test
@@ -174,7 +164,6 @@ public class ParkingLotServiceManagerTest {
 
         //then
         assertNotNull(ticket);
-
     }
 
     @Test
@@ -191,12 +180,10 @@ public class ParkingLotServiceManagerTest {
         Ticket ticket1 = parkingLotServiceManager.park(car1);
         Ticket ticket2 = parkingLotServiceManager.park(car2);
 
-
         //then
         assertNotNull(ticket1);
         assertNotNull(ticket2);
         assertNotEquals(ticket1, ticket2);
-
     }
 
     @Test
@@ -212,10 +199,8 @@ public class ParkingLotServiceManagerTest {
         //when
         Car fetchCarcar = parkingLotServiceManager.fetchCar(ticket);
 
-
         //then
         assertNotNull(fetchCarcar);
-
     }
 
     @Test
@@ -231,13 +216,11 @@ public class ParkingLotServiceManagerTest {
 
         //when
         ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
-            Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(new ParkingBoy(parkingLots), ticker);
+            parkingLotServiceManager.assignParkingBoyFetch(new ParkingBoy(parkingLots), ticker);
         });
 
         //then
         assertEquals("Parking boy not in list.", parkingBoyNotInListException.getLocalizedMessage());
-
     }
-
 
 }
