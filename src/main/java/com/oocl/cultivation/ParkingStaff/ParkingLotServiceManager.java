@@ -2,7 +2,6 @@ package com.oocl.cultivation.ParkingStaff;
 
 import com.oocl.cultivation.Car;
 import com.oocl.cultivation.Exception.NotEnoughPosition;
-import com.oocl.cultivation.Exception.ParkingBoyNotInList;
 import com.oocl.cultivation.Exception.UnrecognizedParkingTicket;
 import com.oocl.cultivation.ParkingLot;
 import com.oocl.cultivation.Ticket;
@@ -26,19 +25,19 @@ public class ParkingLotServiceManager extends ParkingBoy {
     }
 
     // not need passing parkingboy
-    public Ticket assignParkingBoyPark(ParkingBoy parkingBoy, Car car) throws NotEnoughPosition, ParkingBoyNotInList {
-        if (isParkingBoyInList(parkingBoy)) {
-            return parkingBoy.park(car);
-        }
-        throw new ParkingBoyNotInList();
+    public Ticket assignParkingBoyPark(Car car) throws NotEnoughPosition{
+        return  managementList.stream()
+                .findFirst()
+                .orElseThrow(NotEnoughPosition::new)
+                .park(car);
     }
 
     // not need passing parkingboy
-    public Car assignParkingBoyFetch(ParkingBoy parkingBoy, Ticket ticket) throws UnrecognizedParkingTicket, ParkingBoyNotInList {
-        if (isParkingBoyInList(parkingBoy)) {
-            return parkingBoy.fetchCar(ticket);
-        }
-        throw new ParkingBoyNotInList();
+    public Car assignParkingBoyFetch(Ticket ticket) throws UnrecognizedParkingTicket {
+        return managementList.stream()
+                .findFirst()
+                .orElseThrow(UnrecognizedParkingTicket::new)
+                .fetchCar(ticket);
     }
 
 }

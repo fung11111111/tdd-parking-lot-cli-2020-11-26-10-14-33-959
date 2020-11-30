@@ -1,7 +1,6 @@
 package com.oocl.cultivation;
 
 import com.oocl.cultivation.Exception.NotEnoughPosition;
-import com.oocl.cultivation.Exception.ParkingBoyNotInList;
 import com.oocl.cultivation.Exception.UnrecognizedParkingTicket;
 import com.oocl.cultivation.ParkingStaff.ParkingBoy;
 import com.oocl.cultivation.ParkingStaff.ParkingLotServiceManager;
@@ -37,7 +36,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_ticket_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
+    void should_return_ticket_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_parkingBoy_car_parkinglot() throws NotEnoughPosition{
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -47,31 +46,11 @@ public class ParkingLotServiceManagerTest {
         parkingLotServiceManager.addParkingBoy(parkingBoy);
 
         //when
-        Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(parkingBoy, car);
+        Ticket ticket = parkingLotServiceManager.assignParkingBoyPark(car);
 
         //then
         assertNotNull(ticket);
     }
-
-    @Test
-    void should_throw_parkingboynotinlist_exception_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_incorrectparkingBoy_car_parkinglot() throws NotEnoughPosition, ParkingBoyNotInList {
-        //given
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
-        parkingLots.add(new ParkingLot(1));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
-        Car car = new Car();
-        parkingLotServiceManager.addParkingBoy(parkingBoy);
-
-        //when
-        ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
-            parkingLotServiceManager.assignParkingBoyPark(new ParkingBoy(parkingLots), car);
-        });
-
-        //then
-        assertEquals("Parking boy not in list.", parkingBoyNotInListException.getLocalizedMessage());
-    }
-
 
     @Test
     void should_throw_notenoughposition_exception_when_parkinglotservicemanager_assignparkingboypark_given_parkinglotservicemanager_parkingboy_car_parkingLot_with_no_available_capacity() throws NotEnoughPosition {
@@ -85,7 +64,7 @@ public class ParkingLotServiceManagerTest {
 
         //when
         NotEnoughPosition notEnoughPositionException = assertThrows(NotEnoughPosition.class, () -> {
-            parkingLotServiceManager.assignParkingBoyPark(parkingBoy, car);
+            parkingLotServiceManager.assignParkingBoyPark(car);
         });
 
         //then
@@ -93,7 +72,7 @@ public class ParkingLotServiceManagerTest {
     }
 
     @Test
-    void should_return_car_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket, ParkingBoyNotInList {
+    void should_return_car_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_parkingBoy_ticket() throws NotEnoughPosition, UnrecognizedParkingTicket{
         //given
         ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
         parkingLots.add(new ParkingLot(1));
@@ -104,7 +83,7 @@ public class ParkingLotServiceManagerTest {
         Ticket ticket = parkingBoy.park(car);
 
         //when
-        Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, ticket);
+        Car fetchedCar = parkingLotServiceManager.assignParkingBoyFetch(ticket);
 
         //then
         assertNotNull(fetchedCar);
@@ -125,7 +104,7 @@ public class ParkingLotServiceManagerTest {
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, ticket);
+            parkingLotServiceManager.assignParkingBoyFetch(ticket);
         });
 
         //then
@@ -145,7 +124,7 @@ public class ParkingLotServiceManagerTest {
 
         //when
         UnrecognizedParkingTicket unrecognizedParkingTicketException = assertThrows(UnrecognizedParkingTicket.class, () -> {
-            parkingLotServiceManager.assignParkingBoyFetch(parkingBoy, new Ticket());
+            parkingLotServiceManager.assignParkingBoyFetch(new Ticket());
         });
 
         //then
@@ -203,24 +182,5 @@ public class ParkingLotServiceManagerTest {
         assertNotNull(fetchCarcar);
     }
 
-    @Test
-    void should_throw_parkingboynotinlist_exception_when_parkinglotservicemanager_assignparkingboyfetch_given_parkinglotservicemanager_incorrectparkingBoy_ticket() throws NotEnoughPosition, ParkingBoyNotInList {
-        //given
-        ArrayList<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
-        parkingLots.add(new ParkingLot(1));
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        ParkingLotServiceManager parkingLotServiceManager = new ParkingLotServiceManager(new ArrayList<ParkingBoy>(), parkingLots);
-        Car car = new Car();
-        parkingLotServiceManager.addParkingBoy(parkingBoy);
-        Ticket ticker = parkingBoy.park(car);
-
-        //when
-        ParkingBoyNotInList parkingBoyNotInListException = assertThrows(ParkingBoyNotInList.class, () -> {
-            parkingLotServiceManager.assignParkingBoyFetch(new ParkingBoy(parkingLots), ticker);
-        });
-
-        //then
-        assertEquals("Parking boy not in list.", parkingBoyNotInListException.getLocalizedMessage());
-    }
 
 }
